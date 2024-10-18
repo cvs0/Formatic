@@ -10,7 +10,7 @@ var arrayIterProto = GetIntrinsic('%ArrayIteratorPrototype%', true);
 
 var iterProto = arrayIterProto && gPO(arrayIterProto);
 
-var result = iterProto || {};
+var result = (iterProto !== Object.prototype && iterProto) || {};
 
 if (hasSymbols()) {
 	var defined = {};

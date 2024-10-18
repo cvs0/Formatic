@@ -9,6 +9,7 @@
 * **Type-safe**: Built with TypeScript to ensure a robust and type-safe form handling experience.
 * **Declarative API**: Manage form state and inputs with ease using a declarative approach.
 * **Composable Inputs**: Use inputs like `Text`, `Toggle`, and `Group` for complex form structures while keeping control over how they are rendered.
+* **Optional Debouncing**: Control whether input validation should be debounced, allowing for real-time or delayed validation.
 
 ## Installation
 

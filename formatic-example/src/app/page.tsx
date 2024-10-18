@@ -2,11 +2,21 @@
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import { Text, Toggle, Group } from "formatic-react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function Home() {
-  const nameField = Text();
-  const emailField = Text();
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  const nameField = Text("", (value: string) =>
+    value.length < 3 ? "Name too short" : null
+  );
+  const emailField = Text("", (value: string) =>
+    !value.includes("@") ? "Invalid email" : null
+  );
   const subscribedToggle = Toggle(false);
 
   interface UserForm {
@@ -16,14 +26,22 @@ export default function Home() {
   }
 
   const userGroup = Group({
-    name: () => Text(),
-    email: () => Text(),
+    name: () =>
+      Text("", (value: string) => (value.length < 3 ? "Name too short" : null)),
+    email: () =>
+      Text("", (value: string) =>
+        !value.includes("@") ? "Invalid email" : null
+      ),
     subscribed: () => Toggle(false),
   }) as UserForm;
 
   useEffect(() => {
     console.log(nameField.value);
   }, [nameField.value]);
+
+  if (!isClient) {
+    return null;
+  }
 
   return (
     <div className="min-h-screen p-8 pb-20 bg-gradient-to-r from-blue-100 to-purple-100">
@@ -66,11 +84,15 @@ export default function Home() {
             placeholder="Name"
             className="p-4 border rounded-md shadow-sm"
           />
+          {nameField.error && <p className="text-red-500">{nameField.error}</p>}
           <Input
             {...emailField}
             placeholder="Email"
             className="p-4 border rounded-md shadow-sm"
           />
+          {emailField.error && (
+            <p className="text-red-500">{emailField.error}</p>
+          )}
 
           {/* Toggle for Subscription */}
           <div className="flex items-center gap-2">
@@ -80,9 +102,29 @@ export default function Home() {
             <input
               id="subscribe"
               type="checkbox"
-              {...subscribedToggle}
+              checked={subscribedToggle.value}
+              onChange={() =>
+                subscribedToggle.onChange(!subscribedToggle.value)
+              }
               className="h-5 w-5"
-            />{" "}
+            />
+          </div>
+        </div>
+
+        {/* Output Boxes */}
+        <div className="mt-10 w-full">
+          <h2 className="text-2xl font-bold mb-4 text-gray-800">Output</h2>
+          <div className="p-4 border rounded-md shadow-sm mb-4 bg-gray-50">
+            <p>
+              <strong>Name:</strong> {nameField.value}
+            </p>
+            <p>
+              <strong>Email:</strong> {emailField.value}
+            </p>
+            <p>
+              <strong>Subscribed:</strong>{" "}
+              {subscribedToggle.value ? "Yes" : "No"}
+            </p>
           </div>
         </div>
 
@@ -94,11 +136,17 @@ export default function Home() {
             placeholder="Name"
             className="p-4 border rounded-md shadow-sm mb-4"
           />
+          {userGroup.name.error && (
+            <p className="text-red-500">{userGroup.name.error}</p>
+          )}
           <Input
             {...userGroup.email}
             placeholder="Email"
             className="p-4 border rounded-md shadow-sm mb-4"
           />
+          {userGroup.email.error && (
+            <p className="text-red-500">{userGroup.email.error}</p>
+          )}
           <div className="flex items-center gap-2">
             <label htmlFor="formSubscribe" className="text-gray-700">
               Subscribed:
@@ -112,6 +160,25 @@ export default function Home() {
               }
               className="h-5 w-5"
             />
+          </div>
+        </div>
+
+        {/* Output Boxes for User Group */}
+        <div className="mt-10 w-full">
+          <h2 className="text-2xl font-bold mb-4 text-gray-800">
+            User Group Output
+          </h2>
+          <div className="p-4 border rounded-md shadow-sm mb-4 bg-gray-50">
+            <p>
+              <strong>Name:</strong> {userGroup.name.value}
+            </p>
+            <p>
+              <strong>Email:</strong> {userGroup.email.value}
+            </p>
+            <p>
+              <strong>Subscribed:</strong>{" "}
+              {userGroup.subscribed.value ? "Yes" : "No"}
+            </p>
           </div>
         </div>
       </main>

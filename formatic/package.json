@@ -1,7 +1,8 @@
 {
   "name": "formatic-react",
-  "version": "0.1.8",
+  "version": "0.2.0",
   "description": "A form library for React",
+  "private": false,
   "author": {
     "email": "cvs0_main@proton.me",
     "name": "cvs0",
@@ -32,14 +33,15 @@
     "typescript"
   ],
   "devDependencies": {
+    "@babel/core": "^7.25.8",
     "@rollup/plugin-commonjs": "^28.0.0",
     "@rollup/plugin-node-resolve": "^15.3.0",
     "@rollup/plugin-typescript": "^12.1.0",
+    "@types/lodash": "^4.17.10",
+    "@types/node": "^22.7.6",
     "@types/react": "^18.3.11",
     "@typescript-eslint/eslint-plugin": "^8.8.0",
     "@typescript-eslint/parser": "^8.8.0",
-    "babel-core": "^6.26.3",
-    "babel-runtime": "^6.26.0",
     "eslint": "^8.57.1",
     "eslint-plugin-react": "^7.37.1",
     "eslint-plugin-react-hooks": "^4.6.2",
@@ -50,10 +52,14 @@
     "typescript": "^5.6.2"
   },
   "peerDependencies": {
-    "react": "^16.8.0",
-    "react-dom": "^16.8.0"
+    "react": "^18",
+    "react-dom": "^18"
   },
   "files": [
     "dist"
-  ]
+  ],
+  "dependencies": {
+    "@babel/runtime": "^7.25.7",
+    "lodash": "^4.17.21"
+  }
 }
