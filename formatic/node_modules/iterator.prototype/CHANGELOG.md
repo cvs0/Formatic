@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v1.1.3](https://github.com/ljharb/Iterator.prototype/compare/v1.1.2...v1.1.3) - 2024-10-08
+
+### Commits
+
+- [Fix] in node 0.12 - 4, do not mutate Object.prototype [`4a4fa45`](https://github.com/ljharb/Iterator.prototype/commit/4a4fa458728ec2cb0c8e182956020989c7fb0573)
+- [Tests] replace `aud` with `npm audit` [`ece6082`](https://github.com/ljharb/Iterator.prototype/commit/ece60822ffcd87c82db10add871cb9958c875e4f)
+- [meta] add missing `engines.node` [`7ee3359`](https://github.com/ljharb/Iterator.prototype/commit/7ee335941706c5cebf940b541a73b4414fd47508)
+- [Dev Deps] add missing peer dep [`fb90acc`](https://github.com/ljharb/Iterator.prototype/commit/fb90accee214ee8c40046edd6f90d6d0e983961a)
+
 ## [v1.1.2](https://github.com/ljharb/Iterator.prototype/compare/v1.1.1...v1.1.2) - 2023-09-13
 
 ### Commits
