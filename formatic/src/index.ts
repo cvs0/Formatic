@@ -1,25 +1,37 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
+import debounce from "lodash.debounce";
 
-function debounce(func: (...args: any[]) => void, wait: number) {
-  let timeout: NodeJS.Timeout;
-  return (...args: any[]) => {
-    clearTimeout(timeout);
-    timeout = setTimeout(() => func(...args), wait);
-  };
-}
-
-export function Text(
-  initialValue: string = "",
-  validate?: (value: string) => string | null,
-  useDebounce: boolean = true,
-  debounceWait: number = 300
-) {
+export function createTextField({
+  name,
+  initialValue = "",
+  validate,
+  useDebounce = true,
+  debounceWait = 300,
+  autoFocus = false,
+  maxlength,
+}: {
+  name: string;
+  initialValue?: string;
+  validate?: (value: string) => string | null;
+  useDebounce?: boolean;
+  debounceWait?: number;
+  autoFocus?: boolean;
+  maxlength?: number;
+}) {
   const [value, setValue] = useState<string>(initialValue);
   const [error, setError] = useState<string | null>(null);
+
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     setValue(initialValue);
   }, [initialValue]);
+
+  useEffect(() => {
+    if (autoFocus && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [autoFocus]);
 
   const validateValue = useCallback(
     (newValue: string) => {
@@ -50,16 +62,14 @@ export function Text(
     [debouncedValidate, validateValue, useDebounce]
   );
 
-  const reset = useCallback(() => {
-    setValue(initialValue);
-    setError(null);
-  }, [initialValue]);
-
   return {
+    name,
+    id: name.toLowerCase().trim().replace(/\s+/g, "-"),
     value,
     error,
     onChange,
-    reset,
+    inputref: inputRef,
+    maxlength,
   };
 }
 
@@ -110,15 +120,10 @@ export function List<T extends Record<string, any>>(
     return items;
   }, []);
 
-  const reset = useCallback(() => {
-    setItems(initialState);
-  }, [initialState]);
-
   return {
     items,
     addItem,
     removeItem,
-    reset,
   };
 }
 
@@ -157,5 +162,9 @@ export const useInit = <T extends Record<string, any>>(spec: T) => {
     setState(spec);
   }, [spec]);
 
-  return { ...state, updateState, reset };
+  return {
+    ...state,
+    updateState,
+    reset,
+  };
 };

@@ -2,7 +2,7 @@
 
 var test = require('tape');
 var hasSymbols = require('has-symbols')();
-var getProto = require('reflect.getprototypeof');
+var getProto = require('get-proto');
 
 var iterProto = require('../');
 
