@@ -1,7 +1,7 @@
 {
   "name": "formatic-react",
-  "version": "0.2.0",
-  "description": "A form library for React",
+  "version": "0.3.0",
+  "description": "An input handling library for React",
   "private": false,
   "author": {
     "email": "cvs0_main@proton.me",
@@ -33,23 +33,24 @@
     "typescript"
   ],
   "devDependencies": {
-    "@babel/core": "^7.25.8",
-    "@rollup/plugin-commonjs": "^28.0.0",
-    "@rollup/plugin-node-resolve": "^15.3.0",
-    "@rollup/plugin-typescript": "^12.1.0",
-    "@types/lodash": "^4.17.10",
-    "@types/node": "^22.7.6",
-    "@types/react": "^18.3.11",
-    "@typescript-eslint/eslint-plugin": "^8.8.0",
-    "@typescript-eslint/parser": "^8.8.0",
-    "eslint": "^8.57.1",
-    "eslint-plugin-react": "^7.37.1",
-    "eslint-plugin-react-hooks": "^4.6.2",
-    "react": "^18.3.1",
-    "rollup": "^4.24.0",
-    "rollup-plugin-sass": "^1.13.2",
+    "@babel/core": "^7.26.8",
+    "@rollup/plugin-commonjs": "^28.0.2",
+    "@rollup/plugin-node-resolve": "^16.0.0",
+    "@rollup/plugin-typescript": "^12.1.2",
+    "@types/lodash": "^4.17.15",
+    "@types/lodash.debounce": "^4.0.9",
+    "@types/node": "^22.13.1",
+    "@types/react": "^19.0.8",
+    "@typescript-eslint/eslint-plugin": "^8.24.0",
+    "@typescript-eslint/parser": "^8.24.0",
+    "eslint": "^9.20.0",
+    "eslint-plugin-react": "^7.37.4",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "react": "^19.0.0",
+    "rollup": "^4.34.6",
+    "rollup-plugin-sass": "^1.15.2",
     "rollup-plugin-typescript2": "^0.36.0",
-    "typescript": "^5.6.2"
+    "typescript": "^5.7.3"
   },
   "peerDependencies": {
     "react": "^18",
@@ -59,7 +60,8 @@
     "dist"
   ],
   "dependencies": {
-    "@babel/runtime": "^7.25.7",
-    "lodash": "^4.17.21"
+    "@babel/runtime": "^7.26.7",
+    "lodash": "^4.17.21",
+    "lodash.debounce": "^4.0.8"
   }
 }
